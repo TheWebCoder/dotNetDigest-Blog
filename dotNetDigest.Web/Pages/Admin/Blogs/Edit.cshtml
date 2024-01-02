@@ -42,9 +42,23 @@
                     <input type="text" class="form-control" id="shortDescription" asp-for="BlogPost.ShortDescription">
                 </div>
 
+                    <div class="mb-3">
+                        <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
+                        <input type="file" id="featuredImageUpload" asp-for="FeaturedImage" />
+                        @if (Model.BlogPost.FeatutedImageUrl != null)
+                        {
+                            <img src="@Model.BlogPost.FeatutedImageUrl" id="featuredImageDisplay" style="width: 300px;" />
+                        }
+                        else
+                        {
+                            <img src="" id="featuredImageDisplay" style="display:none; width: 300px;" />
+                        }
+
+                    </div>
+
                 <div class="mb-3">
-                    <label for="featureImageUrl" class="form-label">Featured Image</label>
-                    <input type="text" class="form-control" asp-for="BlogPost.FeatutedImageUrl">
+                    <label for="featureImageUrl" class="form-label">Featured Image URL</label>
+                        <input type="text" id="featureImageUrl" class="form-control" asp-for="BlogPost.FeatutedImageUrl">
                 </div>
 
                 <div class="mb-3">
@@ -62,8 +76,13 @@
                     <input type="text" class="form-control" id="author" asp-for="BlogPost.Author">
                 </div>
 
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags (comma separated)</label>
+                    <input type="text" id="tags" class="form-control" asp-for="Tags"/>
+                </div>
+
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="isVisible" asp-for="BlogPost.Visible" />
+                    <input class="form-check-input" type="checkbox" id="isVisible" asp-for="BlogPost.Visible" />
                     <label class="form-check-label" for="isVisible">
                         Is Visible
                     </label>
@@ -90,6 +109,34 @@ else
 
     @section Scripts {
         <script>
-            var editor = new FroalaEditor('#content');
+            var editor = new FroalaEditor('#content', {
+                imageUploadURL: '/api/images'
+            });
+
+            const featuredImageUploadElement = document.getElementById('featuredImageUpload');
+            const featuredImageUrl = document.getElementById('featureImageUrl');
+            const featutredImageDisplay = document.getElementById('featuredImageDisplay');
+
+            async function uploadFeaturedImage(e) {
+                console.log(e.target.files[0]);
+
+                let data = new FormData();
+                data.append('file', e.target.files[0]);
+
+                await fetch('/api/images', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': '*/*',
+                    },
+                    body: data
+                }).then(response => response.json())
+                    .then(result => {
+                        featuredImageUrl.value = result.link;
+                        featuredImageDisplay.style.display = 'block';
+                        featuredImageDisplay.src = result.link;
+                    });
+            }
+
+            featuredImageUploadElement.addEventListener('change', uploadFeaturedImage);
         </script>
     }

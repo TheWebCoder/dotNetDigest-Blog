@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotNetDigest.Web.Data;
 
@@ -11,9 +12,10 @@ using dotNetDigest.Web.Data;
 namespace dotNetDigest.Web.Migrations
 {
     [DbContext(typeof(dotNetDigestDbContext))]
-    partial class dotNetDigestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240102050601_Adding functionality for comments")]
+    partial class Addingfunctionalityforcomments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

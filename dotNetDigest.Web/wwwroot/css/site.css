@@ -20,3 +20,7 @@ body {
 .nav-bg {
     background-color: #5D2E92;
 }
+
+.blog-details img {
+    max-width: 100%;
+}

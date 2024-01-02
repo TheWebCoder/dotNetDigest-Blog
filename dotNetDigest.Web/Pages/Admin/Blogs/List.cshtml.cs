@@ -2,6 +2,7 @@ using dotNetDigest.Web.Data;
 using dotNetDigest.Web.Models.Domain;
 using dotNetDigest.Web.Models.ViewModels;
 using dotNetDigest.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using System.Text.Json;
 
 namespace dotNetDigest.Web.Pages.Admin.Blogs
 {
+    [Authorize(Roles = "Admin")]
     public class ListModel : PageModel
     {
         private readonly IBlogPostRepository blogPostRepository;

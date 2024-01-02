@@ -2,12 +2,14 @@ using dotNetDigest.Web.Data;
 using dotNetDigest.Web.Models.Domain;
 using dotNetDigest.Web.Models.ViewModels;
 using dotNetDigest.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace dotNetDigest.Web.Pages.Admin.Blogs
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly IBlogPostRepository blogPostRepository;
@@ -15,6 +17,12 @@ namespace dotNetDigest.Web.Pages.Admin.Blogs
         [BindProperty]
 
         public BlogPost BlogPost { get; set; }
+
+        [BindProperty]
+        public IFormFile FeaturedImage { get; set; }
+
+        [BindProperty]
+        public string Tags { get; set; }
 
         public EditModel(IBlogPostRepository blogPostRepository)
         {
@@ -25,6 +33,11 @@ namespace dotNetDigest.Web.Pages.Admin.Blogs
         {
             BlogPost = await blogPostRepository.GetAsync(id);
 
+            if (BlogPost != null && BlogPost.Tags != null) 
+            {
+                Tags = string.Join(',', BlogPost.Tags.Select(x => x.Name));
+            }
+
            
         }
 
@@ -33,7 +46,8 @@ namespace dotNetDigest.Web.Pages.Admin.Blogs
 
             try
             {
-                
+                BlogPost.Tags = new List<Tag>( Tags.Split(',').Select(x => new Tag() { Name = x.Trim()}));
+
                 await blogPostRepository.UpdateAsync(BlogPost);
 
                 ViewData["Notification"] = new Notification
