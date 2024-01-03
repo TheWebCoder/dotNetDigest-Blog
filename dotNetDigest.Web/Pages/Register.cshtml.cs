@@ -22,38 +22,47 @@ namespace dotNetDigest.Web.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            var user = new IdentityUser
+
+            if (ModelState.IsValid)
             {
-                UserName = RegisterViewModel.Email,
-                Email = RegisterViewModel.Email
-            };
-
-            var identityResult = await userManager.CreateAsync(user, RegisterViewModel.Password);
-
-
-            if (identityResult.Succeeded)
-            {
-                var addRolesResult = await userManager.AddToRoleAsync(user, "User");
-
-                if (addRolesResult.Succeeded)
+                var user = new IdentityUser
                 {
-                    ViewData["Notification"] = new Notification
-                    {
-                        Type = Enums.NotificationType.Success,
-                        Message = "User registered successfully."
-                    };
+                    UserName = RegisterViewModel.Email,
+                    Email = RegisterViewModel.Email
+                };
 
-                    return Page();
+                var identityResult = await userManager.CreateAsync(user, RegisterViewModel.Password);
+
+
+                if (identityResult.Succeeded)
+                {
+                    var addRolesResult = await userManager.AddToRoleAsync(user, "User");
+
+                    if (addRolesResult.Succeeded)
+                    {
+                        ViewData["Notification"] = new Notification
+                        {
+                            Type = Enums.NotificationType.Success,
+                            Message = "User registered successfully."
+                        };
+
+                        return Page();
+                    }
                 }
+
+                ViewData["Notification"] = new Notification
+                {
+                    Type = Enums.NotificationType.Error,
+                    Message = "Something went wrong."
+                };
+
+                return Page();
+            }
+            else
+            {
+                return Page();
             }
 
-            ViewData["Notification"] = new Notification
-            {
-                Type = Enums.NotificationType.Error,
-                Message = "Something went wrong."
-            };
-
-            return Page();  
 
         }
     }

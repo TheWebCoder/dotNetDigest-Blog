@@ -11,36 +11,40 @@
 
 <partial name="_Notification">
 
-@if (Model.BlogPost != null)
-{
-    <div>
-        <div class="container">
-            <form method="post">
-                <div class="mb-3">
-                    <label for="heading" class="form-label">Id</label>
-                    <input type="text" class="form-control" id="id" asp-for="BlogPost.Id" readonly>
-                </div>
+    @if (Model.BlogPost != null)
+    {
+        <div>
+            <div class="container">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="heading" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="id" asp-for="BlogPost.Id" readonly required />
+                        <span class="text-danger" asp-validation-for="BlogPost.Id"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="heading" class="form-label">Heading</label>
-                    <input type="text" class="form-control" id="heading" asp-for="BlogPost.Heading">
-                </div>
+                    <div class="mb-3">
+                        <label for="heading" class="form-label">Heading</label>
+                        <input type="text" class="form-control" id="heading" asp-for="BlogPost.Heading" required />
+                        <span class="text-danger" asp-validation-for="BlogPost.Heading"></span>
+                    </div>
 
 
-                <div class="mb-3">
-                    <label for="pageTitle" class="form-label">Page Title</label>
-                    <input type="text" class="form-control" id="pageTitle" asp-for="BlogPost.PageTitle">
-                </div>
+                    <div class="mb-3">
+                        <label for="pageTitle" class="form-label">Page Title</label>
+                        <input type="text" class="form-control" id="pageTitle" asp-for="BlogPost.PageTitle" required />
+                        <span class="text-danger" asp-validation-for="BlogPost.PageTitle"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" id="content" asp-for="BlogPost.Content"></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" asp-for="BlogPost.Content" required></textarea>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="shortDescription" class="form-label">Short Description</label>
-                    <input type="text" class="form-control" id="shortDescription" asp-for="BlogPost.ShortDescription">
-                </div>
+                    <div class="mb-3">
+                        <label for="shortDescription" class="form-label">Short Description</label>
+                        <input type="text" class="form-control" id="shortDescription" asp-for="BlogPost.ShortDescription" required />
+                        <span class="text-danger" asp-validation-for="BlogPost.ShortDescription"></span>
+                    </div>
 
                     <div class="mb-3">
                         <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
@@ -56,55 +60,60 @@
 
                     </div>
 
-                <div class="mb-3">
-                    <label for="featureImageUrl" class="form-label">Featured Image URL</label>
+                    <div class="mb-3">
+                        <label for="featureImageUrl" class="form-label">Featured Image URL</label>
                         <input type="text" id="featureImageUrl" class="form-control" asp-for="BlogPost.FeatutedImageUrl">
-                </div>
+                        <span class="text-danger" asp-validation-for="BlogPost.FeatutedImageUrl" required></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="urlHandle" class="form-label">Url Handle</label>
-                    <input type="text" class="form-control" id="urlHandle" asp-for="BlogPost.UrlHandle">
-                </div>
+                    <div class="mb-3">
+                        <label for="urlHandle" class="form-label">Url Handle</label>
+                        <input type="text" class="form-control" id="urlHandle" asp-for="BlogPost.UrlHandle" required />
+                        <span class="text-danger" asp-validation-for="BlogPost.UrlHandle"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="publishedDate" class="form-label">Published Date</label>
-                    <input type="date" class="form-control" id="publishedDate" asp-for="BlogPost.PublishedDate">
-                </div>
+                    <div class="mb-3">
+                        <label for="publishedDate" class="form-label">Published Date</label>
+                        <input type="date" class="form-control" id="publishedDate" asp-for="BlogPost.PublishedDate" required />
+                        <span class="text-danger" asp-validation-for="BlogPost.PublishedDate"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="author" class="form-label">Author</label>
-                    <input type="text" class="form-control" id="author" asp-for="BlogPost.Author">
-                </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="author" asp-for="BlogPost.Author" required />
+                        <span class="text-danger" asp-validation-for="BlogPost.Author"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="tags" class="form-label">Tags (comma separated)</label>
-                    <input type="text" id="tags" class="form-control" asp-for="Tags"/>
-                </div>
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags (comma separated)</label>
+                        <input type="text" id="tags" class="form-control" asp-for="Tags" required />
+                        <span class="text-danger" asp-validation-for="Tags"></span>
+                    </div>
 
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" id="isVisible" asp-for="BlogPost.Visible" />
-                    <label class="form-check-label" for="isVisible">
-                        Is Visible
-                    </label>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="isVisible" asp-for="BlogPost.Visible" />
+                        <label class="form-check-label" for="isVisible">
+                            Is Visible
+                        </label>
 
-                </div>
+                    </div>
 
-                <div class="mb-3 d-flex justify-content-between">
-                    <button class="btn btn-primary" type="submit" asp-page-handler="Edit">Submit</button>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <button class="btn btn-primary" type="submit" asp-page-handler="Edit">Submit</button>
 
-                    <button class="btn btn-danger" type="submit" asp-page-handler="Delete">Delete</button>
-                </div>
+                        <button class="btn btn-danger" type="submit" asp-page-handler="Delete">Delete</button>
+                    </div>
 
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-}
-else
-{
-    <div class="container">
-        <p>Blog post not found.</p>
-    </div>
-}
+    }
+    else
+    {
+        <div class="container">
+            <p>Blog post not found.</p>
+        </div>
+    }
 
 
     @section Scripts {

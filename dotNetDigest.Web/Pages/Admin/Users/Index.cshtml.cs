@@ -27,8 +27,52 @@ namespace dotNetDigest.Web.Pages.Admin.Users
 
         public async Task<IActionResult> OnGet()
         {
-            var users = await userRepository.GetAll();
+            await GetUsers();
 
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            if(ModelState.IsValid)
+            {
+                var identityUser = new IdentityUser
+                {
+                    UserName = AddUserRequest.Username,
+                    Email = AddUserRequest.Email
+                };
+
+                var roles = new List<string> { "User" };
+
+                if (AddUserRequest.AdminCheckbox)
+                {
+                    roles.Add("Admin");
+                }
+
+                var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
+
+                if (result)
+                {
+                    return RedirectToPage("/Admin/Users/Index");
+                }
+
+                return Page();
+            }
+
+            await GetUsers();
+            return Page();
+            
+        }
+
+        public async Task<IActionResult> OnPostDelete()
+        {
+            await userRepository.Delete(SelectedUserId);
+            return RedirectToPage("/Admin/Users/Index");
+        }
+
+        private async Task GetUsers()
+        {
+            var users = await userRepository.GetAll();
 
             Users = new List<User>();
 
@@ -41,39 +85,6 @@ namespace dotNetDigest.Web.Pages.Admin.Users
                     Email = user.Email
                 });
             }
-
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPost()
-        {
-            var identityUser = new IdentityUser
-            {
-                UserName = AddUserRequest.Username,
-                Email = AddUserRequest.Email
-            };
-
-            var roles = new List<string> { "User" };
-
-            if (AddUserRequest.AdminCheckbox)
-            {
-                roles.Add("Admin");
-            }
-
-            var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
-
-            if (result)
-            {
-                return RedirectToPage("/Admin/Users/Index");
-            }
-
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostDelete()
-        {
-            await userRepository.Delete(SelectedUserId);
-            return RedirectToPage("/Admin/Users/Index");
         }
     }
 }
