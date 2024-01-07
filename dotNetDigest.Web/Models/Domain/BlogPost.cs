@@ -28,6 +28,8 @@
 
         public ICollection<BlogPostComment> Comments { get; set; }
 
+        
+
 
     }
 }
