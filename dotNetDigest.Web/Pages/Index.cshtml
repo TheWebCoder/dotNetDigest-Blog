@@ -8,7 +8,7 @@
     <div class="row align-items-center g-5 py-5">
         <div class="col-12 col-lg-6">
             <h1 class="display-5 fw-bold lh-1 mb-3">
-                The .Net Dev Blog
+                The .NET Dev Blog
             </h1>
             <p class="lead">dotNetDigest is the home of everything realated to coding in .NET like C#, Bootstrap, 
                 HTML, JavaScript, CSS, SQL, Razor Pages, MVC, Blazor, React, etc. Want to read the latest articles? 
@@ -26,7 +26,7 @@
 
             <h2 class="mb-5">Latest Posts</h2>
 
-            <div class="mb-5">
+            @* <div class="mb-5">
                 @if (Model.Tags != null && Model.Tags.Any())
                 {
                     foreach (var tag in Model.Tags)
@@ -37,7 +37,7 @@
                         
                     }
                 }
-            </div>
+            </div> *@
 
             @if (Model.Blogs != null && Model.Blogs.Any())
             {

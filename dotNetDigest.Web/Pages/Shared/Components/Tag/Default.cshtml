@@ -1,0 +1,10 @@
+﻿@* Default.cshtml in Pages/Shared/Components/Tag *@
+@model IEnumerable<dotNetDigest.Web.Models.Domain.Tag>
+
+@foreach (var tag in Model)
+{
+    <li class="nav-item">
+        <a href="/tags/@tag.Name" class="nav-link">@tag.Name</a>
+
+    </li>
+}
