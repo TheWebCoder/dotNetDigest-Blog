@@ -34,7 +34,7 @@ This platform is built using Razor Pages in ASP.NET Core
 
 ## Deployment
 - **Azure**: The platform is deployed on Microsoft Azure, ensuring high availability and scalability.
-[![Demo](https://img.shields.io/badge/DEMO-blue)](https://dotnetdigestweb.azurewebsites.net/)
+- [![Demo](https://img.shields.io/badge/DEMO-blue)](https://dotnetdigestweb.azurewebsites.net/)
 
 ## Project Structure
 - `Pages/`: Core of the application, containing Razor Pages for different sections of the blog.
