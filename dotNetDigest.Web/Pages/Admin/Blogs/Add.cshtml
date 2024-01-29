@@ -11,7 +11,7 @@
 
 <div>
     <div class="container">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="heading" class="form-label">Heading</label>
                 <input type="text" required class="form-control" id="heading" asp-for="AddBlogPostRequest.Heading">
@@ -39,7 +39,7 @@
 
             <div class="mb-3">
                 <label for="featuredImageUpload" class="form-label">Featured Image Upload</label>
-                <input type="file" required id="featuredImageUpload" asp-for="FeaturedImage" />
+                <input type="file" id="featuredImageUpload" asp-for="FeaturedImage" />
                 <img src="" id="featuredImageDisplay" style="display:none; width: 300px;" />
             </div>
 
@@ -91,18 +91,29 @@
 
 @section Scripts {
     <script>
-        // var editor = new FroalaEditor('#content', {
-        //     imageUploadURL: '/api/images'
+        var editor = new FroalaEditor('#content', {
+            imageUploadURL: '/api/images'
+        });
+
+        // tinymce.init({
+        //     selector: '#content',
+        //     plugins: 'image link lists preview code fullscreen table media help wordcount',
+        //     toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | preview fullscreen | help',
+        //     menubar: 'file edit view insert format tools table help',
+        //     images_upload_url: '/api/images',
+        //     setup: function (editor) {
+        //         editor.on('change', function () {
+        //             // Update the hidden textarea on change
+        //             tinymce.triggerSave();
+        //         });
+        //     }
         // });
 
-        tinymce.init({
-            selector: '#content',
-            plugins: 'image link lists preview code fullscreen table media paste help wordcount',
-            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | preview fullscreen | help',
-            menubar: 'file edit view insert format tools table help',
-            images_upload_url: '/api/images',
-            // Additional TinyMCE configurations can be added here
-        });
+        // Handle form submission
+        // document.querySelector('form').addEventListener('submit', function (e) {
+        //     // Update the hidden textarea before submitting
+        //     tinymce.triggerSave();
+        // });
 
         const featuredImageUploadElement = document.getElementById('featuredImageUpload');
         const featuredImageUrl = document.getElementById('featureImageUrl');
