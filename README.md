@@ -9,12 +9,13 @@ Being a web developer, I am constantly learning new technologies and interesting
 This platform is built using Razor Pages in ASP.NET Core
 
 ## Features
-- **Rich Blogging Interface**: Create and publish blog posts easily.
+- **Blog Posting**: Create and publish blog posts easily.
 - **User Management**: Manage user accounts and roles for content management.
 - **Interactive Tag System**: Organize blog posts with a dynamic tagging system.
 - **Responsive Design**: Using Bootstrap for a responsive and modern interface.
 - **Rich Text Editing**: Implements a powerful WYSIWYG editor for content creation.
 - **Search Functionality**: Easily find content with an integrated search feature.
+- **Image Upload API**: An API controller is included for image uploading within blog posts.
 
  ## How to Use
 - **Home Page**: Browse the latest blog posts.
