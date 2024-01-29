@@ -16,7 +16,7 @@ This platform is built using Razor Pages in ASP.NET Core
 - **Rich Text Editing**: Implements a powerful WYSIWYG editor for content creation.
 - **Search Functionality**: Easily find content with an integrated search feature.
 
-- ## How to Use
+ ## How to Use
 - **Home Page**: Browse the latest blog posts.
 - **Post Creation and Management**: Implements a user-friendly interface for creating and managing blog posts.
 - **User Dashboard**: Personal account management.
