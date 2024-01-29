@@ -2,9 +2,9 @@
 [![Demo](https://img.shields.io/badge/DEMO-blue)](https://dotnetdigestweb.azurewebsites.net/)
 
 ##Overview
-Stay up to date with everyhing related to .NET development with my .NETDigest blog!
+Stay up to date with everything related to .NET development with my .NETDigest blog!
 
-Being a web developer, I am constantly learning new technologies and interesting concepts. I created this blog to post about the topics related to .NET development like C# and BootStrap etc. Feel free to leave a comment and give me feedback.
+Being a web developer, I am constantly learning new technologies and interesting concepts. I created this blog to post about topics related to .NET development like C# and BootStrap etc. Feel free to leave a comment and give me feedback.
 
 This platform is built using Razor Pages in ASP.NET Core
 
@@ -34,7 +34,7 @@ This platform is built using Razor Pages in ASP.NET Core
 
 ## Deployment
 - **Azure**: The platform is deployed on Microsoft Azure, ensuring high availability and scalability.
-- [![Demo](https://img.shields.io/badge/DEMO-blue)](https://dotnetdigestweb.azurewebsites.net/)
+[![Demo](https://img.shields.io/badge/DEMO-blue)](https://dotnetdigestweb.azurewebsites.net/)
 
 ## Project Structure
 - `Pages/`: Core of the application, containing Razor Pages for different sections of the blog.
