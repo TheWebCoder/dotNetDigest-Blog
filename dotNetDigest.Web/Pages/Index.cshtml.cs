@@ -23,7 +23,9 @@ namespace dotNetDigest.Web.Pages
 
         public async Task<IActionResult> OnGet()
         {
-            Blogs = (await blogPostRepository.GetAllAsync()).ToList();
+            //Blogs = (await blogPostRepository.GetAllAsync()).ToList();
+            var allBlogs = await blogPostRepository.GetAllAsync();
+            Blogs = allBlogs.OrderByDescending(blog => blog.PublishedDate).ToList();
             Tags = (await tagRepository.GetAllAsync()).ToList();
             return Page();
         }

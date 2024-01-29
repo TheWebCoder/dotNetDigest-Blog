@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/dotNetDigest.Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 
 </head>
 <body>
@@ -25,7 +27,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">HOME</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                             @await Component.InvokeAsync("Tag")
                         </li>
 
@@ -81,14 +83,23 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - dotNetDigest.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-6">
+                    <p>&copy; 2023 - dotNetDigest.com - <a asp-area="" asp-page="/Privacy">Privacy</a></p>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <p><a href="https://bryangonzalez.dev">Hire Me</a></p>
+                </div>
+            </div>
+            
         </div>
+        
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    @* <script src="~/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script> *@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
